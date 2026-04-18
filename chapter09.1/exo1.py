@@ -1,0 +1,7 @@
+
+with open ('words.txt') as file :
+    for line in file:
+        word = line.strip()
+        if len (word) > 20:
+            print (word)
+open('words.txt')

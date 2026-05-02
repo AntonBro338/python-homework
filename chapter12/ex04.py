@@ -1,51 +1,44 @@
-def find_metathetic_pairs(anagram_map: dict[str, list[str]]) -> list[tuple[str, str]]:
+def anagrams(word_list: list[str]) -> dict[str, list[str]]:
     """
-    Находит все метатетические пары внутри групп анаграмм.
-
-    Args:
-        anagram_map: словарь анаграмм (ключ — отсортированные буквы, значение — список слов).
-
-    Returns:
-        Список кортежей — метатетических пар.
+    Группирует слова из списка по их каноническому виду (отсортированным буквам).
     """
+    anagram_map = {}
+    for word in word_list:
+        word = word.strip().lower()
+        key = "".join(sorted(word))
+        anagram_map.setdefault(key, []).append(word)
+    return anagram_map
+
+def has_metathetic_pairs(word_list: list[str]) -> list[tuple[str, str]]:
+    """
+    Находит все метатетические пары в списке слов, используя группировку по анаграммам.
+    """
+    anagram_groups = anagrams(word_list)
     metathetic_pairs = []
-
-    # Обрабатываем каждую группу анаграмм
-    for key, words in anagram_map.items():
-        if len(words) < 2:  # если в группе меньше 2 слов, пропускаем
+    for key, words in anagram_groups.items():
+        if len(words) < 2:
+            print ("Нет, это не подходит")
             continue
-
-        # Сравниваем все пары слов в группе
         for i in range(len(words)):
             for j in range(i + 1, len(words)):
                 word1, word2 = words[i], words[j]
                 if is_metathetic(word1, word2):
                     metathetic_pairs.append((word1, word2))
-
     return metathetic_pairs
 
 def is_metathetic(word1: str, word2: str) -> bool:
     """
     Проверяет, образуют ли два слова метатетическую пару.
-
-    Args:
-        word1, word2: два слова одинаковой длины.
-
-    Returns:
-        bool: True, если слова образуют метатетическую пару.
     """
     if len(word1) != len(word2):
         return False
-
-    # Находим позиции, где буквы отличаются
     diff_positions = []
-    for pos, (c1, c2) in enumerate(zip(word1, word2)):
-        if c1 != c2:
-            diff_positions.append(pos)
-
-    # Условие метатетической пары: ровно два отличия, и буквы поменялись местами
+    for positions, (character_positions1, character_positions2) in enumerate(zip(word1, word2)):
+        if character_positions1 != character_positions2:
+            diff_positions.append(positions)
     if len(diff_positions) != 2:
         return False
+    positions1, positions2 = diff_positions
+    return word1[positions1] == word2[positions2]
 
-    pos1, pos2 = diff_positions
-    return word1[pos1] == word2[pos2] and word1[pos2] == word2[pos1]
+print (has_metathetic_pairs (["converse", "conserve"]))

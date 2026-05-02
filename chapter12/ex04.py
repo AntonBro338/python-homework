@@ -1,7 +1,4 @@
 def anagrams(word_list: list[str]) -> dict[str, list[str]]:
-    """
-    Группирует слова из списка по их каноническому виду (отсортированным буквам).
-    """
     anagram_map = {}
     for word in word_list:
         word = word.strip().lower()
@@ -11,7 +8,7 @@ def anagrams(word_list: list[str]) -> dict[str, list[str]]:
 
 def has_metathetic_pairs(word_list: list[str]) -> list[tuple[str, str]]:
     """
-    Находит все метатетические пары в списке слов, используя группировку по анаграммам.
+    Находит все метатетические пары в списке слов.
     """
     anagram_groups = anagrams(word_list)
     metathetic_pairs = []

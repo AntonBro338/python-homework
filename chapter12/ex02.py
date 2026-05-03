@@ -1,7 +1,7 @@
 
 def print_most_frequent(t: str):
     """
-    >>> print_most_frequent ('полиграф')
+    >>> print_most_frequent ('полиграф')  # недостаточный тест, т.к. все буквы по одной
     п 1
     о 1
     л 1

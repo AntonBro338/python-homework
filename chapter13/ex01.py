@@ -2,7 +2,7 @@ import string
 
 def read_file(filename: str) -> list[str]:
     """Прочитать файл построчно в список"""
-    with open(filename) as file:
+    with open(filename, 'r', encoding='utf-8') as file:
         return [line.strip() for line in file]
 
 def parse_words(lines: list[str]) -> list[str]:
@@ -17,4 +17,4 @@ def parse_words(lines: list[str]) -> list[str]:
     return all_words
 
 
-print (parse_words(read_file('words.txt')))
+print (parse_words(read_file('book.txt')))

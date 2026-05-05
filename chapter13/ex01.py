@@ -6,7 +6,7 @@ def read_file(filename: str) -> list[str]:
         return [line.strip() for line in file]
 
 def parse_words(lines: list[str]) -> list[str]:
-    """Разбить список строк на слова и очистить их"""
+    """Разбить список строк на слова"""
     all_words = []
     for line in lines:
         parts = line.split()

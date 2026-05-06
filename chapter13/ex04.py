@@ -25,15 +25,9 @@ def histogram(words: list[str]) -> dict[str, int]:
 
 def analyze_book(filename: str):
     """Проанализировать книгу и вывести статистику"""
-    if not read_file(filename):
-        return
-    main_text = remove_metadata(read_file(filename))
-    if not main_text:
-        return
-    words = parse_words(main_text)
-    print(f"Общее количество слов в книге: {len(words)}")
-    print(f"Количество разных слов: {len(histogram(words))}")
-    print (f"Двадцать самых распространенных слов: { sorted(histogram(words).items(), key=lambda x: x[1], reverse=True)[:20]}")
+    print(f"Общее количество слов в книге: {len(parse_words(remove_metadata(read_file(filename))))}")
+    print(f"Количество разных слов: {len(histogram(parse_words(remove_metadata(read_file(filename)))))}")
+    print (f"Двадцать самых распространенных слов: { sorted(histogram(parse_words(remove_metadata(read_file(filename)))).items(), key=lambda x: x[1], reverse=True)[:20]}")
 
 def find_unknown_words(book_file, words_file):
     """Выдает слова которых не было в списке"""

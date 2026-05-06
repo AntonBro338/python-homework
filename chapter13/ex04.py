@@ -36,6 +36,7 @@ def analyze_book(filename: str):
     print (f"Двадцать самых распространенных слов: { sorted(histogram(words).items(), key=lambda x: x[1], reverse=True)[:20]}")
 
 def find_unknown_words(book_file, words_file):
+    """Выдает слова которых не было в списке"""
     book_words = parse_words(remove_metadata(read_file(book_file)))
     official_words_dict = {word.lower().strip(): None for word in read_file(words_file)}
     unknown_words = {}

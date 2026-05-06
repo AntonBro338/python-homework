@@ -15,7 +15,6 @@ def parse_words(lines: list[str]) -> list[str]:
             word.lower()
             word.strip(string.punctuation)
             all_words.append(word)
-    #print (all_words)
     return all_words
 
 def histogram(words: list[str]) -> dict[str, int]:
@@ -45,4 +44,4 @@ def find_unknown_words(book_file, words_file):
             unknown_words[word] = unknown_words.get(word, 0) + 1
     return unknown_words
 
-print (find_unknown_words("book.txt", "words.txt"))
+find_unknown_words("book.txt", "words.txt")

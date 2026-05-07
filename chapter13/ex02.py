@@ -27,8 +27,8 @@ def parse_words(lines: list[str]) -> list[str]:
     for line in lines:
         parts = line.split()
         for word in parts:
-            word.lower()
-            word.strip(string.punctuation)
+            word = word.lower() #сли без word то работает, но тогда не приводит к одному регистру
+            word = word.strip(string.punctuation)
             all_words.append(word)
     return all_words
 

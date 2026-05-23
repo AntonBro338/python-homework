@@ -8,4 +8,8 @@ def top3(st: str) -> list[tuple[str, int]]:
     [('а', 3), ('о', 2), ('л', 2)]
 
     """
-    return Counter(st.lower().replace(' ', '')).most_common(3)
+
+    freq = {}
+    for char in st.lower().replace(' ', ''):
+        freq[char] = freq.get(char, 0) + 1
+    return Counter(freq).most_common(3)

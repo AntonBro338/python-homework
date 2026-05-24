@@ -1,13 +1,17 @@
 from collections import Counter
 from functools import reduce
+from typing import TypeVar
+
 dict_1 = {1: 12, 2: 33, 3: 10, 4: 10, 5: 2, 6: 90}
 dict_2 = {1: 12, 3: 7, 4: 1, 5: 2, 7: 112}
 dict_3 = {2: 3, 3: 3, 4: 60, 6: 8, 7: 25, 8: 71}
 dict_4 = {3: 1, 4: 13, 5: 31, 9: 9, 10: 556}
 
-
-def sum_dct(*dicts: dict[int, int]) -> dict[int, int]:
+T = TypeVar("T")
+def sum_dct(*dicts: dict[T, int]) -> dict[T, int]:
     """"
+    >>> sum_dct({'a': 1, 'b': 2}, {'b': 3})
+    {'a': 1, 'b': 5}
     >>> sum_dct(dict_1, dict_4, dict_3)
     {1: 12, 2: 36, 3: 14, 4: 83, 5: 33, 6: 98, 9: 9, 10: 556, 7: 25, 8: 71}
     >>> sum_dct(dict_1, dict_2, dict_3, dict_4)
@@ -19,8 +23,10 @@ def sum_dct(*dicts: dict[int, int]) -> dict[int, int]:
             dict_sum_dct[k] = dict_sum_dct.get(k, 0) + v
     return dict_sum_dct
 
-def max_dct(*dicts: dict[int, int]) -> dict[int, int]:
+def max_dct(*dicts: dict[T, int]) -> dict[T, int]:
     """"
+    >>> max_dct({'a': 1, 'b': 2}, {'b': 3})
+    {'a': 1, 'b': 3}
     >>> max_dct(dict_1, dict_2)
     {1: 12, 2: 33, 3: 10, 4: 10, 5: 2, 6: 90, 7: 112}
     >>> max_dct(dict_1, dict_2, dict_3, dict_4)

@@ -7,6 +7,6 @@ def change(lst: list[Any]) -> list[Any]:
     >>> change(['н', 'л', 'о', 'с'])
     ['с', 'л', 'о', 'н']
     """
-    if len(lst) >= 2:
+    if len(lst):
         lst[0], lst[-1] = lst[-1], lst[0]
     return lst

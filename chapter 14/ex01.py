@@ -5,12 +5,10 @@ def replace_lines(pattern: str, replacement: str, input_file: str, output_file: 
    >>> replace_lines ('dag', 'dAg', 'input_file.txt', 'output_file.txt')
    'book\\n***START OF THE PROJECT\\nlook\\ndAg\\ndog bag\\n\\nbog\\nvog\\ngl hf\\nU2\\n***END OF THE PROJECT\\ngg\\nwp'
    """
-   shutil.copyfile(input_file, output_file)
-
    try:
-       file = open(output_file, 'r')
-       content = file.read()
-   except Exception(BaseException):
+       with open(input_file, 'r') as file:
+        content = file.read()
+   except IOError:
        print('Что-то пошло не так.')
        return None
    with open(output_file, 'w') as final_fail:
